@@ -3,13 +3,14 @@ package shop.projectp.springboot.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import shop.projectp.springboot.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
 @Getter // Getter만 만드는 이유는 불필요하거나 의도치 않은 데이터 세팅을 막기 위함이다.
 @NoArgsConstructor // 기본 생성자 자동 추가
 @Entity // 테이블과 해당 클래스를 연결한다.
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 생성시마다 id값이 증가한다.

@@ -46,4 +46,12 @@ public class PostsService {
                 .map(posts -> new PostsListResponseDto(posts))
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        postsRepository.delete(posts); // JpaRepository에서 제공하는 delete 메소드를 사용한다. 존재하는 포스트인지 확인 후 제거한다.
+    }
 }

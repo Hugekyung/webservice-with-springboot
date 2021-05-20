@@ -2,15 +2,26 @@
 
     <h1>스프링 부트로 만든 웹 서비스 페이지</h1>
     <div class="col-md-12">
+        <!-- 로그인 기능 영역 -->
         <div class="row">
             <div class="col-md-6">
                 <a href="/posts/save" role="button" class="btn btn-primary">글 쓰기</a>
+                <!-- 머스테치에는 if문 기능이 없고, true/false만 구분할 수 있다. -->
+                {{#userName}} <!-- userName이 존재할 경우 -->
+                    <span id="user">{{userName}}</span> 님, 안녕하세요.
+                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                {{/userName}}
+                {{^userName}} <!-- userName이 존재하지 않는 경우 -->
+                    <a href="/oauth2/authorization/google" class="btn btn-success active"
+                    role="button">Google Login</a>
+                {{/userName}}
             </div>
         </div>
         <br>
         <hr>
         <br>
 
+        <!-- 목록 출력 영역 -->
         <table class="table table-horizontal table-bordered">
             <thead class="thead-strong">
             <tr>

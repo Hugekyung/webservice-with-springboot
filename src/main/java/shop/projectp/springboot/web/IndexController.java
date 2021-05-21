@@ -23,8 +23,8 @@ public class IndexController {
         model.addAttribute("posts", postsService.findAllDesc());
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if (user != null) {
-            model.addAttribute("userName", user.getName());
-            System.out.println("userName이 등록되었습니다.");
+            model.addAttribute("socialName", user.getName());
+            System.out.println("socialName 이 등록되었습니다." + user.getName() + "님");
         }
         return "index";
     }

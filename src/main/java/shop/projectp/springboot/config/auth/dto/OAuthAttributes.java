@@ -41,7 +41,7 @@ public class OAuthAttributes {
                 .build();
     }
 
-    // Entity 생성 시점은 처음 "가입할 때" 이다. 그 시점의 기본 권한을 GUEST로 준다.
+    // Entity 생성 시점은 처음 "가입할 때" 이다. 그 시점의 기본 권한을 GUEST 로 준다.
     public User toEntity() {
         return User.builder()
                 .name(name)

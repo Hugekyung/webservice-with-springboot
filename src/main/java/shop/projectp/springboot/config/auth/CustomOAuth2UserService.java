@@ -25,6 +25,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     private final UserRepository userRepository;
     private final HttpSession httpSession;
 
+    // 구글에서 받은 userRequest 데이터에 대한 후처리 함수.
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
@@ -49,8 +50,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // SessionUser: 세션에 사용자 정보를 저장하기 위한 dto 클래스
         httpSession.setAttribute("user", new SessionUser(user));
 
-        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(
-                user.getRoleKey())),
+        return new DefaultOAuth2User(
+                Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
     }

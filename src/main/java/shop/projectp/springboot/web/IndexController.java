@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import shop.projectp.springboot.config.auth.LoginUser;
 import shop.projectp.springboot.config.auth.dto.SessionUser;
 import shop.projectp.springboot.service.posts.PostsService;
 import shop.projectp.springboot.web.dto.PostsResponseDto;
@@ -19,11 +20,16 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        // SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        // @LoginUser 어노테이션 추가를 통해 httpSession 에서 유저정보를 가져오는 반복적인 코드를 제거한다.
+
         if (user != null) {
             model.addAttribute("socialName", user.getName());
+
+            // 잘 등록되었는지 log 찍어보기
             System.out.println("socialName 이 등록되었습니다." + user.getName() + "님");
         }
         return "index";

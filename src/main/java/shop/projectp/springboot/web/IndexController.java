@@ -1,11 +1,13 @@
 package shop.projectp.springboot.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import shop.projectp.springboot.config.auth.LoginUser;
+import shop.projectp.springboot.config.auth.dto.OAuthAttributes;
 import shop.projectp.springboot.config.auth.dto.SessionUser;
 import shop.projectp.springboot.service.posts.PostsService;
 import shop.projectp.springboot.web.dto.PostsResponseDto;
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
+    // private final HttpSession httpSession; // @LoginUser 어노테이션으로 인해 필요 없는 코드
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {

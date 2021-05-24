@@ -15,9 +15,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .headers().frameOptions().disable()
+                .csrf().disable().headers().frameOptions().disable()
                 .and()
+                    //authorizeRequests -> URL별 권한 관리 설정 옵션 시작점.
+                    //antMatchers에 지정된 url들은 전체 열람 권한을 준다.
                     .authorizeRequests()
                     .antMatchers("/", "/css/**", "/images/**",
                             "/js/**", "/h2-console/**").permitAll()

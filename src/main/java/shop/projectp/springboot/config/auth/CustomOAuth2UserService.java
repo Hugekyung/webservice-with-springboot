@@ -56,9 +56,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 attributes.getNameAttributeKey());
     }
 
+    // 원래 findByEmail을 통해 유저 정보를 저장하거나 업데이트 해야하는데,
+    // 깃헙의 경우, 엑세스토큰으로 한번더 요청을 보내야 이메일을 반환받을 수 있으므로, 여기서는 모든 소셜 로그인 api가 공통으로 반환하는 이름 정보로 처리한다.
     private User saveOrUpdate(OAuthAttributes attributes) {
-        User user = userRepository.findByEmail(attributes.getEmail()).map(entity -> entity.update(attributes
-                .getName(), attributes.getPicture()))
+        User user = userRepository.findByName(attributes.getEmail())
+                .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity()); // 테이블 생성
 
         return userRepository.save(user);

@@ -45,6 +45,9 @@ public class PostsService {
         return postsRepository.findAllDesc().stream()
                 .map(posts -> new PostsListResponseDto(posts))
                 .collect(Collectors.toList());
+        // 1. stream(): 컬랙션은 .stream()를 사용하여 Stream타입의 객체로 바꿔줄 수 있다.
+        // 2. map(): map()은 Function<T, R> 함수적 인터페이스(람다식)를 매개변수로 받아 Stream의 데이터를 하나씩 람다식으로 처리해서 다시 Stream객체에 담는다.
+        // 3. collect(): collect()는 스트림의 데이터를 모아 새로운 객체를 만들어 리턴한다. 상단의 코드에선 Collectors.toList()를 사용해서 List 객체를 만들어 리턴한다.
     }
 
     @Transactional

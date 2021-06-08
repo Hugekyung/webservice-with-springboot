@@ -47,7 +47,7 @@ public class OAuthAttributes {
                 return ofGoogle(userNameAttributeName, attributes);
             case "naver":
                 log.info(registrationId + "계정으로 로그인되었습니다.");
-                return ofNaver(userNameAttributeName, attributes);
+                return ofNaver("id", attributes);
             case "github":
                 log.info(registrationId + "계정으로 로그인되었습니다.");
                 return ofGithub(userNameAttributeName, attributes);

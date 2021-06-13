@@ -3,7 +3,6 @@ package shop.projectp.springboot.config.auth.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import shop.projectp.springboot.domain.user.Role;
 import shop.projectp.springboot.domain.user.User;
 
@@ -34,13 +33,7 @@ public class OAuthAttributes {
         log.info("요청 :: "+registrationId);
         log.info("유저이름 :: "+userNameAttributeName);
         log.info("속성 :: "+attributes);
-//        if("naver".equals(registrationId)) {
-//            return ofNaver("id", attributes);
-//        }
-//        if("github".equals(registrationId)) {
-//            return ofGithub(userNameAttributeName, attributes);
-//        }
-//        return ofGoogle(userNameAttributeName, attributes);
+
         switch (registrationId) {
             case "google":
                 log.info(registrationId + "계정으로 로그인되었습니다.");
